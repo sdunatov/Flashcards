@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useCreateCardMutation } from "../slices/cardApiSlice";
 import { Form, Button } from "react-bootstrap";
+import '../styles/cards.css';
 
 const CreateCard = ({ deckId }) => {
     const [newCardFront, setNewCardFront] = useState('');
@@ -14,9 +15,8 @@ const CreateCard = ({ deckId }) => {
         }
 
         try {
-            // Pozovi createCard mutaciju da doda karticu u bazu
             await createCard({ front: newCardFront, back: newCardBack, deckId });
-            // Resetuj stanje nakon uspešnog dodavanja
+
             setNewCardFront('');
             setNewCardBack('');
         } catch (error) {
@@ -25,31 +25,36 @@ const CreateCard = ({ deckId }) => {
     };
 
     return (
-        <Form>
-            <Form.Group controlId="frontInput">
-                <Form.Label>Front:</Form.Label>
-                <Form.Control
-                    type="text"
-                    value={newCardFront}
-                    onChange={(e) => setNewCardFront(e.target.value)}
-                />
-            </Form.Group>
-            <Form.Group controlId="backInput">
-                <Form.Label>Back:</Form.Label>
-                <Form.Control
-                    type="text"
-                    value={newCardBack}
-                    onChange={(e) => setNewCardBack(e.target.value)}
-                />
-            </Form.Group>
-            <Button
-                variant="primary"
-                onClick={handleCreateCard}
-                disabled={creatingCard}
-            >
-                {creatingCard ? 'Creating...' : 'Create Card'}
-            </Button>
-        </Form>
+        <div className="d-flex justify-content-center">
+            <Form>
+                <Form.Group controlId="frontInput">
+                    <Form.Label className="txtFB">Front:</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={newCardFront}
+                        className="input-style"
+                        onChange={(e) => setNewCardFront(e.target.value)}
+                    />
+                </Form.Group>
+                <Form.Group controlId="backInput">
+                    <Form.Label className="txtFB">Back:</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={newCardBack}
+                        className="input-style"
+                        onChange={(e) => setNewCardBack(e.target.value)}
+                    />
+                </Form.Group>
+                <Button
+                    variant="primary"
+                    onClick={handleCreateCard}
+                    disabled={creatingCard}
+                    className="button-style"
+                >
+                    {creatingCard ? 'Creating...' : 'Create Card'}
+                </Button>
+            </Form>
+        </div>
     );
 };
 

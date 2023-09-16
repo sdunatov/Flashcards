@@ -1,5 +1,5 @@
 .flashcard {
-    width: 200px;
+    width: 500px;
     height: 300px;
     perspective: 1000px;
     position: relative;
@@ -35,4 +35,62 @@
 
 .back {
     transform: rotateY(180deg);
+}
+
+.prev-button,
+.next-button {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+}
+
+.prev-button {
+    margin-left: 10px;
+}
+
+.next-button {
+    margin-left: 480px;
+}
+
+.large-arrow {
+    font-size: 30px;
+}
+
+.leitner-buttons {
+    font-size: 17px;
+    font-weight: 500;
+    background-color: transparent;
+    border: 1px gray;
+    margin-top: 30px;
+}
+
+.card-count {
+    font-size: 17px;
+    font-weight: 500;
+    margin-top: 30px;
+}
+
+.place-nextbox,
+.place-box1 {
+    width: 200px;
+    height: 33px;
+    background-color: #D5EDF6;
+    border: 2px solid #111;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #111;
+}
+
+.place-box1 {
+    margin-top: 7px;
+}
+
+.leitner-box {
+    margin-top: 70px;
+}
+
+.congradulations-mess {
+    position: absolute;
+    margin-top: 40px;
+    color: #C54B51;
 }

@@ -7,7 +7,7 @@ const Hero = () => {
         <div className=' py-5'>
             <Container className='d-flex justify-content-center'>
                 <Card className='p-5 d-flex flex-column hero-card bg-light w-75'>
-                    <h1 className='text-center mb-4'>Deck</h1>
+                    <h1 className='text-center mb-4'>Decks 📚</h1>
                     <div className='text-start'>
                         <Deck />
                     </div>

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Button, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import '../styles/deck.css';
 
 const Deck = () => {
     const { userInfo } = useSelector((state) => state.auth);
@@ -45,6 +46,11 @@ const Deck = () => {
         }
     };
 
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleCreateDeck();
+        }
+    };
 
     if (isLoading) {
         return <p>Loading...</p>;
@@ -61,45 +67,46 @@ const Deck = () => {
                     type="text"
                     value={newDeckName}
                     onChange={(e) => setNewDeckName(e.target.value)}
+                    onKeyPress={handleKeyPress}
                 />
-
-                <Button variant="primary" className="me-3" onClick={handleCreateDeck} disabled={creatingDeck}>
-                    {creatingDeck ? 'Creating...' : 'Create new deck'}
-                </Button>
+                <div className="button-container">
+                    <Button variant="primary" className="me-3" onClick={handleCreateDeck} disabled={creatingDeck}>
+                        {creatingDeck ? 'Creating...' : 'Create new deck'}
+                    </Button>
+                </div>
             </div>
             <p></p>
             {userInfo ? (
                 <>
                     {decks.map((deck) => (
                         <Row key={deck._id} className="align-items-center">
-                            <Col>{deck.name}</Col>
+                            <Col className="deck-name">{deck.name}</Col>
                             <Col>
                                 <Button
+                                    className="button-spacing"
                                     variant="danger"
                                     onClick={() => handleDeleteDeck(deck._id)}
                                     disabled={deletingDeck}
                                 >
-                                    {deletingDeck ? 'Deleting...' : 'Delete Deck'}
+                                    {'Delete Deck'}
                                 </Button>
                                 <Link to={`/cards/${deck._id}`}>
-                                    <Button variant='primary'>
+                                    <Button className="button-spacing" variant='primary'>
                                         Add new card
                                     </Button>
                                 </Link>
                                 <Link to={`/cards/mycards/${deck._id}`}>
-                                    <Button variant='success'>
+                                    <Button className="button-spacing" variant='success'>
                                         Start learning
                                     </Button>
                                 </Link>
                             </Col>
                         </Row>
                     ))}
-
                 </>
             ) : (
                 <>Dobrodošli!</>
-            )
-            }
+            )}
         </>
     );
 }
